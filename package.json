@@ -1,0 +1,25 @@
+{
+  "name": "three-db_v2",
+  "version": "1.0.0",
+  "description": "Three DB with voice command and API connections",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/jaybojaybojaybo/ThreeDB-V2"
+  },
+  "keywords": [
+    "3d",
+    "database"
+  ],
+  "author": "jaybojaybojaybo",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "server": "^1.0.18",
+    "twit": "^2.2.11"
+  }
+}

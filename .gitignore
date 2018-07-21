@@ -1,0 +1,3 @@
+/node_modules/
+./gitHubAPI/config.js
+./twitterAPI/config.js
