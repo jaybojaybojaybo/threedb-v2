@@ -1,4 +1,7 @@
+import GitHubAPI from '../gitHubAPI/github-api';
+
 $(() => {
+    // const GitHubAPI = require('../gitHubAPI/github-api');
     window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.interimResults = true;
@@ -33,6 +36,9 @@ $(() => {
         if (transcript.includes('GitHub')) {
             if (e.results[0].isFinal) {
                 console.log('Git you some Git Hub');
+                let newGit = new GitHubAPI;
+                let outputGits = newGit.getGits();
+                console.log(outputGits);
             }
         }
 
