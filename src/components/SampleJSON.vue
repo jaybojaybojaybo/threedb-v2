@@ -1,5 +1,9 @@
 <template>
-  <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+    <a-entity position="-5 1 -5">
+        <a-cylinder position="0 0 0" radius="0.5" height="1.5" color="#000">
+            <a-text value="JSON" position="-.35 0 .5"></a-text>
+        </a-cylinder>
+    </a-entity>
 </template>
 
 <script>
