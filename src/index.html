@@ -1,25 +1,55 @@
 <!DOCTYPE html>
-<html lang='en'>
-  <head>
-    <title>Voice Test</title>
-    <link rel="stylesheet" href="./styles.css">
-  </head>
-  <body>
-    <h1>Hello, you!</h1>
-    <div class="words" contenteditable></div>
-    <div class="twitter" contenteditable>
-      <h1>Twitter Area</h1>
-    </div>
-    <div class="github">
-      <h1>GitHub Area</h1>
-    </div>
-  </body>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-gamepad-controls/v0.5.0/dist/aframe-gamepad-controls.js"></script>
+    
+</head>
+<body>
+  <div id="app">
+    <img src="https://vuejs.org/images/logo.png" alt="Vue logo">
+    <h1>\{{ greeting }}</h1>
+    <ul>
+      <li>
+        To learn more about Vue, visit
+        <a :href="docsURL" target="_blank">
+          \{{ humanizeURL(docsURL) }}
+        </a>
+      </li>
+      <li>
+        For live help with simple questions, check out
+        <a :href="discordURL" target="_blank">
+          the Discord chat
+        </a>
+      </li>
+      <li>
+        For more complex questions, post to
+        <a :href="forumURL" target="_blank">
+          the forum
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        greeting: 'Welcome to your Vue.js app!',
+        docsURL: 'http://vuejs.org/guide/',
+        discordURL: 'https://chat.vuejs.org',
+        forumURL: 'http://forum.vuejs.org/'
+      },
+      methods: {
+        humanizeURL: function (url) {
+          return url
+            .replace(/^https?:\/\//, '')
+            .replace(/\/$/, '')
+        }
+      }
+    })
+  </script>
+</body>
 </html>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<!-- <script src="../dist/main.js"></script> -->
-<script src="./webSpeechAPI/voice-recognition.js"></script>
-<!-- <script type="module" src="./gitHubAPI/search.js"></script>
-<script type="module" src="./twitterAPI/search-promise.js"></script> -->
