@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 
 import 'aframe';
+import 'aframe-gamepad-controls';
+import 'aframe-layout-component';
 
 Vue.config.productionTip = false
 

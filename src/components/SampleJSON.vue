@@ -3,13 +3,12 @@
 </template>
 
 <script>
-import 'aframe'
 
 export default {
   name: "SampleJSON",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
+
     };
   },
   methods: {

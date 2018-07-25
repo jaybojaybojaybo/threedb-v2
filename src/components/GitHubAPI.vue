@@ -1,21 +1,36 @@
 <template>
-  <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+    <a-entity id="datas" layout="type: box; columns: 3; margin: -2; plane: xz" position="2 2 0">
+            <a-box  v-for="gitHubAccount in gitHubAccounts"
+                    :key="gitHubAccount.id"
+                    material="color: #000000"
+                    onclick="location.href='Datas/Details/@item.Id'"
+                    width="1.5"
+                    event-set__enter="_event: mouseenter; color: #551a8b; metalness: 0.5"
+                    event-set__leave="_event: mouseleave; color: #000000">
+                <a-text value="box" position="-.35 0 .5"></a-text>
+                <a-entity light="color: purple; intensity: 1.5" position="1 1 -2"></a-entity>
+                <a-entity light="color: purple; intensity: 1.5" position="-1 1 -2"></a-entity>
+            </a-box>
+    </a-entity>
 </template>
 
 <script>
-import 'aframe'
+// import 'aframe'
 
 export default {
   name: "GitHubAPI",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App",
-      aframeHTML: `
-        <a-scene>
-            <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-            <a-sky color="#ECECEC"></a-sky>
-        </a-scene>
-      `
+        gitHubAccounts: [
+            {
+                "id": "1",
+                "name": "susan"
+            },
+            {
+                "id": "2",
+                "name": "mccormick"
+            }
+        ]
     };
   },
   methods: {
