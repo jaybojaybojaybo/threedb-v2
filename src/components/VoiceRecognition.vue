@@ -65,8 +65,17 @@ export default {
         if (e.results[0].isFinal) {
             console.log("github recognized")
             var vm = this;
-            console.log(vm)
+            // console.log(vm)
             vm.getGits();
+        }
+      }
+
+      if (transcript.includes("sample")) {
+        if (e.results[0].isFinal) {
+            console.log("json recognized")
+            var vm = this;
+            // console.log(vm)
+            vm.getSamples();
         }
       }
 
@@ -91,6 +100,9 @@ export default {
     },
     async getTwitters() {
     //   this.$socket.emit('hello_twitter', this.message)
+    },
+    getSamples() {
+        voiceBus.$emit('sampleVoice', this.transcript);
     }
   }
 }

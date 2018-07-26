@@ -28,7 +28,7 @@ export default {
   name: "SampleJSON",
   created() {
       let vm = this;
-      voiceBus.$on('gitSample', function(){
+      voiceBus.$on('sampleVoice', function(){
           console.log('this is sampleJSON logging voice received')
           console.log(vm)
           vm.getSamples();
