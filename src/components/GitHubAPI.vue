@@ -17,10 +17,21 @@
 
 <script>
 import GitHub from "../services/github-api.service"
-import VoiceRecognition from './VoiceRecognition'
+import { voiceBus } from '.././main'
 
 export default {
   name: "GitHubAPI",
+  created() {
+      let vm = this;
+      voiceBus.$on('gitVoice', function(){
+          console.log('this is githubapi logging voice received')
+          console.log(vm)
+          vm.getGits();
+      })
+  },
+  mounted() {
+      console.log("github api mounted")
+  },
   data() {
     return {
         gitHubAccounts: [
@@ -39,22 +50,14 @@ export default {
     alert() {
         console.log("hello");
     },
-    async getGits() {
+    getGits() {
         console.log('getGits was triggered in GitHub')
-      let g = new GitHub();
-      g.getGits().then(response => {
-        console.log(response.items);
-        this.gitHubAccounts = response.items;
-      });
+        let g = new GitHub();
+        g.getGits().then(response => {
+            console.log(response.items);
+            this.gitHubAccounts = response.items;
+        });
     }
-  },
-  mounted() {
-      console.log("github api mounted")
-  },
-  provide: function() {
-      return {
-          alert: this.alert
-      }
   }
 };
 </script>

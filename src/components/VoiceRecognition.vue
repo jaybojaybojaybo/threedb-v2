@@ -4,7 +4,7 @@
             v-on:click="recognize" 
             material="color: red;">
             <a-text 
-                value="Voice Rec" 
+                v-bind:value="transcript"
                 position="-.5 0 .5" 
                 color="white">
             </a-text>
@@ -14,15 +14,15 @@
 
 
 <script type = "text/javascript" >
-import GitHubAPI from './GitHubAPI'
+import { voiceBus } from '.././main'
 
 export default {
   name: "VoiceRecognition",
+  props: ['gitVoice'],
   created: function() {
-    console.log("created");
+
   },
   mounted: function() {
-    console.log("Voice Recognition mounted");
     window.SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
     this.recognition = new SpeechRecognition();
@@ -32,17 +32,19 @@ export default {
     // words.appendChild(p);
 
     this.recognition.addEventListener("result", e => {
-      const transcript = Array.from(e.results)
+       const transcript = Array.from(e.results)
         .map(result => result[0])
         .map(result => result.transcript)
         .join("");
-
-      p.textContent = transcript;
-      if (e.results[0].isFinal) {
-        // p = document.createElement("p");
-        // words.appendChild(p);
-        console.log("final: " + e.results)
-      }
+       if(e.results[0].isFinal){
+           this.transcript = transcript
+       }
+    //   p.textContent = transcript;
+    //   if (e.results[0].isFinal) {
+    //     // p = document.createElement("p");
+    //     // words.appendChild(p);
+    //     // console.log("final: " + e.results)
+    //   }
 
       if (transcript.includes("search")) {
         if (e.results[0].isFinal) {
@@ -58,16 +60,10 @@ export default {
 
       if (transcript.includes("GitHub")) {
         if (e.results[0].isFinal) {
-        //   let g = new GitHub();
-        //   this.getGits().then(response => {
-        //     console.log(response.items);
-        //     this.gitHubAccounts = response.items;
-        // });
             console.log("github recognized")
             var vm = this;
             console.log(vm)
-            vm.alert;
-            console.log(vm.alert);
+            vm.getGits();
         }
       }
 
@@ -77,27 +73,22 @@ export default {
   data() {
     return {
       gitHubAccounts: [],
-      twitterAccounts: [],  
+      twitterAccounts: [],
+      transcript: 'Voice Rec'  
     };
   },
-  inject: ['alert'],
   methods: {
     recognize() {
       console.log(this.recognition);
       this.recognition.addEventListener("end", this.recognition.start);
       this.recognition.start();
     },
-    async getGits() {
-    //   let g = new GitHub();
-        console.log("getGits was triggered in Voice")
-      this.getGits().then(response => {
-        console.log(response.items);
-        this.gitHubAccounts = response.items;
-      });
+    getGits() {
+        voiceBus.$emit('gitVoice', this.transcript);
     },
     async getTwitters() {
     //   this.$socket.emit('hello_twitter', this.message)
     }
   }
-};
+}
 </script>
