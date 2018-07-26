@@ -18,7 +18,10 @@ import { voiceBus } from '.././main'
 
 export default {
   name: "VoiceRecognition",
-  props: ['gitVoice'],
+  props: [
+    'gitVoice',
+    'sampleVoice'
+  ],
   created: function() {
 
   },

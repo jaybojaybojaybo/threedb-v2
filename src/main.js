@@ -7,6 +7,7 @@ import 'aframe';
 import 'aframe-gamepad-controls';
 import 'aframe-layout-component';
 import 'aframe-event-set-component';
+import 'aframe-gif-shader';
 
 export const voiceBus = new Vue();
 

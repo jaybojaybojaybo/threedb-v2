@@ -1,5 +1,5 @@
 <template>
-    <a-entity id="datas" layout="type: box; columns: 3; margin: -2; plane: xz" position="10 1 -5">
+    <a-entity id="gitHub" layout="type: box; columns: 3; margin: -2; plane: xz" position="7 1 -5">
             <a-box  v-for="gitHubAccount in gitHubAccounts"
                     :key="gitHubAccount.id"
                     material="color: #000000"

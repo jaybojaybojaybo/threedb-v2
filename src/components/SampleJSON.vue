@@ -1,22 +1,64 @@
 <template>
-    <a-entity position="-5 1 -5">
-        <a-cylinder position="0 0 0" radius="0.5" height="1.5" color="#000">
-            <a-text value="JSON" position="-.35 0 .5"></a-text>
-        </a-cylinder>
+    <a-entity id="sampleJSON" layout="type: box; columns: 3; margin: -2; plane: xz" position="-5 1 -5">
+        <a-box  v-for="sampleAccount in sampleAccounts"
+                    :key="sampleAccount.id"
+                    material="color: #000000"
+                    class="clickable"
+                    v-on:click="getSamples"
+                    width="1.5"
+                    event-set__enter="_event: mouseenter; color: #551a8b; metalness: 0.5"
+                    event-set__leave="_event: mouseleave; color: #000000">
+                <a-text v-bind:value="sampleAccount.name" position="-.35 0 .5"></a-text>
+                <a-entity geometry="primitive:box;" 
+                    material="shader:gif;src:url(https://media.giphy.com/media/8smCT3vezUH9S/giphy.gif);opacity:1.0"
+                    position="0 1.25 0"
+                ><a-entity light="color: white; intensity: 1.5"></a-entity>
+                </a-entity>
+                <a-entity light="color: purple; intensity: 1.5" position="1 1 -2"></a-entity>
+                <a-entity light="color: purple; intensity: 1.5" position="-1 1 -2"></a-entity>
+            </a-box>
     </a-entity>
 </template>
 
 <script>
+import Example from '../services/exampleAPI.service'
+import { voiceBus } from '.././main'
 
 export default {
   name: "SampleJSON",
+  created() {
+      let vm = this;
+      voiceBus.$on('gitSample', function(){
+          console.log('this is sampleJSON logging voice received')
+          console.log(vm)
+          vm.getSamples();
+      })
+  },
+  mounted() {
+      console.log("sampleJSON api mounted")
+  },
   data() {
     return {
-
+        sampleAccounts: [
+            {
+                "id": "1",
+                "name": "marge"
+            }
+        ]
     };
   },
   methods: {
-    
+    alert() {
+        console.log("sample");
+    },
+    getSamples() {
+        console.log('getSamples was triggered in SampleJSON')
+        let s = new Example();
+        s.getExamples().then(response => {
+            console.log(response);
+            this.sampleAccounts = response
+        })
+    }
   }
 };
 </script>
