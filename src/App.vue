@@ -19,7 +19,7 @@
       <a-entity light="color: white; type: ambient;"></a-entity>
 
       <!-- Title --> 
-      <a-entity position="0 20 -20">
+      <a-entity position="0 10 -20">
         <a-text 
           value="THREE DB" 
           position="-10 0 0"
@@ -48,7 +48,7 @@
       ></a-image>
 
       <!-- 3D Vue Components --> 
-      <HelloWorld/>
+      <TwitterAPI/>
       <GitHubAPI/>
       <SampleJSON/>
       <VoiceRecognition/>
@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import TwitterAPI from './components/TwitterAPI'
 import GitHubAPI from './components/GitHubAPI'
 import SampleJSON from './components/SampleJSON'
 import VoiceRecognition from './components/VoiceRecognition'
@@ -84,7 +84,7 @@ import VoiceRecognition from './components/VoiceRecognition'
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    TwitterAPI,
     GitHubAPI,
     SampleJSON,
     VoiceRecognition

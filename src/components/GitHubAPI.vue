@@ -1,5 +1,5 @@
 <template>
-    <a-entity id="gitHub" layout="type: box; columns: 3; margin: -2; plane: xz" position="7 1 -5">
+    <a-entity id="gitHub" layout="type: box; columns: 3; marginRow: -5; marginColumn: -2; plane: xz" position="7 1 -5">
             <a-box  v-for="gitHubAccount in gitHubAccounts"
                     :key="gitHubAccount.id"
                     material="color: #000000"
@@ -8,7 +8,10 @@
                     width="1.5"
                     event-set__enter="_event: mouseenter; color: #551a8b; metalness: 0.5"
                     event-set__leave="_event: mouseleave; color: #000000">
-                <a-text v-bind:value="gitHubAccount.login" position="-.35 0 .5"></a-text>
+                <a-text v-bind:value="gitHubAccount.login" 
+                    position="-.6 0 .5"               
+                    width="1"
+                    wrap-count="10"></a-text>
                 <a-image v-bind:src="gitHubAccount.avatar_url" position="0 1.25 0"></a-image>
                 <a-entity light="color: purple; intensity: 1.5" position="1 1 -2"></a-entity>
                 <a-entity light="color: purple; intensity: 1.5" position="-1 1 -2"></a-entity>

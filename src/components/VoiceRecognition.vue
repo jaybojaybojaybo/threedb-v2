@@ -1,12 +1,16 @@
 <template>
     <a-entity position="0 1 5">
         <a-box class="clickable" 
+            width="3"
             v-on:click="recognize" 
-            material="color: red;">
+            event-set__enter="_event: mouseenter; color: #ff0000; metalness: 0.5"
+            event-set__leave="_event: mouseleave; color: #ffeead;">
             <a-text 
-                v-bind:value="transcript"
-                position="-.5 0 .5" 
-                color="white">
+              width="2.75"
+              wrap-count="30"
+              v-bind:value="transcript"
+              position="-1.35 0.15 .5" 
+              color="#88d8b0">
             </a-text>
         </a-box>
     </a-entity>
@@ -86,7 +90,7 @@ export default {
     return {
       gitHubAccounts: [],
       twitterAccounts: [],
-      transcript: 'Voice Rec'  
+      transcript: 'Start Voice Recognition'  
     };
   },
   methods: {
