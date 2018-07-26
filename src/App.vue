@@ -29,6 +29,12 @@
         </a-text>  
       </a-entity>
 
+      <!-- GitHub Section -->
+      <a-image src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png"
+        position="3 3 5"
+        scale=".5 .5 .5"
+      ></a-image>
+
       <!-- 3D Vue Components --> 
       <HelloWorld/>
       <GitHubAPI/>

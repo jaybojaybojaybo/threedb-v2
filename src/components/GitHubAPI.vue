@@ -9,6 +9,7 @@
                     event-set__enter="_event: mouseenter; color: #551a8b; metalness: 0.5"
                     event-set__leave="_event: mouseleave; color: #000000">
                 <a-text v-bind:value="gitHubAccount.login" position="-.35 0 .5"></a-text>
+                <a-image v-bind:src="gitHubAccount.avatar_url" position="0 1.25 0"></a-image>
                 <a-entity light="color: purple; intensity: 1.5" position="1 1 -2"></a-entity>
                 <a-entity light="color: purple; intensity: 1.5" position="-1 1 -2"></a-entity>
             </a-box>
