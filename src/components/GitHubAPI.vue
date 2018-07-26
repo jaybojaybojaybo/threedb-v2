@@ -17,6 +17,7 @@
 
 <script>
 import GitHub from "../services/github-api.service"
+import VoiceRecognition from './VoiceRecognition'
 
 export default {
   name: "GitHubAPI",
@@ -52,7 +53,7 @@ export default {
   },
   provide: function() {
       return {
-          getGits: this.getGits
+          alert: this.alert
       }
   }
 };

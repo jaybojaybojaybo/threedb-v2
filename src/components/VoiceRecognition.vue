@@ -59,10 +59,15 @@ export default {
       if (transcript.includes("GitHub")) {
         if (e.results[0].isFinal) {
         //   let g = new GitHub();
-          this.getGits().then(response => {
-            console.log(response.items);
-            this.gitHubAccounts = response.items;
-          });
+        //   this.getGits().then(response => {
+        //     console.log(response.items);
+        //     this.gitHubAccounts = response.items;
+        // });
+            console.log("github recognized")
+            var vm = this;
+            console.log(vm)
+            vm.alert;
+            console.log(vm.alert);
         }
       }
 
@@ -75,7 +80,7 @@ export default {
       twitterAccounts: [],  
     };
   },
-  inject: ['getGits'],
+  inject: ['alert'],
   methods: {
     recognize() {
       console.log(this.recognition);
@@ -91,7 +96,7 @@ export default {
       });
     },
     async getTwitters() {
-      this.$socket.emit('hello_twitter', this.message)
+    //   this.$socket.emit('hello_twitter', this.message)
     }
   }
 };
