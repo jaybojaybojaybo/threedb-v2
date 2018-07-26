@@ -35,6 +35,18 @@
         scale=".5 .5 .5"
       ></a-image>
 
+      <!-- Twitter Section -->
+      <a-image src="https://png.icons8.com/metro/1600/twitter.png"
+        position="0 3 5"
+        scale=".5 .5 .5"
+      ></a-image>
+
+      <!-- Sample JSON -->
+      <a-image src="https://cdatasoftware.gallerycdn.vsassets.io/extensions/cdatasoftware/jsonodbcdriver/2015/1482142883727/198127/1/logo-json.png"
+        position="-2 3 5"
+        scale=".5 .5 .5"
+      ></a-image>
+
       <!-- 3D Vue Components --> 
       <HelloWorld/>
       <GitHubAPI/>
