@@ -2,15 +2,18 @@
   <a-entity position="0 1 -5">
     <a-box  v-for="twitterAccount in twitterAccounts"
             :key="twitterAccount.id"
-            material="color: #000000"
+            material="color: #FF2F9A"
             class="clickable"
             v-on:click="getTwits"
             width="1.5"
             event-set__enter="_event: mouseenter; color: #551a8b; metalness: 0.5"
-            event-set__leave="_event: mouseleave; color: #000000">
-        <a-text v-bind:value="twitterAccount.name" position="-.35 0 .5"></a-text>
+            event-set__leave="_event: mouseleave; color: #FF2F9A">
+        <a-text v-bind:value="twitterAccount.name" 
+            position="-.6 0 .5" 
+            width="1"
+            wrap-count="10"></a-text>
         <a-entity geometry="primitive:box;" 
-            material="shader:gif;src:url(http://78.media.tumblr.com/tumblr_mcn0heb5bA1qdlh1io1_400.gif);opacity:1.0"
+            material="shader:gif;src:url(https://i.gifer.com/3eRt.gif);opacity:1.0"
             position="0 1.25 0"
         >
         </a-entity>
@@ -21,20 +24,32 @@
 </template>
 
 <script>
+import { voiceBus } from '.././main'
+
 export default {
   name: "TwitterAPI",
+  created() {
+    let vm = this;
+      voiceBus.$on('twitterVoice', function(){
+          console.log('this is twitterapi logging voice received')
+          // console.log(vm)
+          vm.getTwits();
+      })
+  },
   data() {
     return {
-      twitterAccounts: [
-            {
-                "id": "1",
-                "name": "twitter",
-                "img_url": ''
-            }
-        ]
+      twitterAccounts: []
     };
   },
   methods: {
+    getTwits() {
+      this.twitterAccounts = [
+        {
+          "id": "1",
+          "name": "under construction"
+        }
+      ]
+    }
   }
 };
 </script>

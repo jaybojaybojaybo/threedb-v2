@@ -4,12 +4,12 @@ import Vue from 'vue'
 import App from './App'
 
 import 'aframe';
-import 'aframe-gamepad-controls';
 import 'aframe-layout-component';
 import 'aframe-event-set-component';
 import 'aframe-gif-shader';
 import 'aframe-draw-component';
 import 'aframe-textwrap-component';
+import 'aframe-gamepad-controls';
 
 export const voiceBus = new Vue();
 

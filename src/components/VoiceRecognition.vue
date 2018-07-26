@@ -10,7 +10,7 @@
               wrap-count="30"
               v-bind:value="transcript"
               position="-1.35 0.15 .5" 
-              color="#88d8b0">
+              color="#000000">
             </a-text>
         </a-box>
     </a-entity>
@@ -24,7 +24,8 @@ export default {
   name: "VoiceRecognition",
   props: [
     'gitVoice',
-    'sampleVoice'
+    'sampleVoice',
+    'twitterVoice'
   ],
   created: function() {
 
@@ -61,7 +62,10 @@ export default {
 
       if (transcript.includes("Twitter")) {
         if (e.results[0].isFinal) {
-          console.log("TWEEEEEEEEEEEEEEET");
+          console.log("twitter recognized")
+            var vm = this;
+            // console.log(vm)
+            vm.getTwits();
         }
       }
 
@@ -102,8 +106,8 @@ export default {
     getGits() {
         voiceBus.$emit('gitVoice', this.transcript);
     },
-    async getTwitters() {
-    //   this.$socket.emit('hello_twitter', this.message)
+    getTwits() {
+        voiceBus.$emit('twitterVoice', this.transcript);
     },
     getSamples() {
         voiceBus.$emit('sampleVoice', this.transcript);

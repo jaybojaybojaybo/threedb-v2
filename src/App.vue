@@ -55,8 +55,7 @@
 
       <!-- Camera + Cursor. -->
 			<a-entity id="camera" position="0 1 10">
-				<a-camera fly="true"
-						  universal-controls="fly: true; speed: 0.3">
+				<a-camera universal-controls="speed: 0.3">
 					<a-entity 
               cursor="rayOrigin: cursor" 
               raycaster="objects: .clickable" 
@@ -80,6 +79,8 @@ import TwitterAPI from './components/TwitterAPI'
 import GitHubAPI from './components/GitHubAPI'
 import SampleJSON from './components/SampleJSON'
 import VoiceRecognition from './components/VoiceRecognition'
+
+import 'aframe-gamepad-controls';
 
 export default {
   name: 'App',

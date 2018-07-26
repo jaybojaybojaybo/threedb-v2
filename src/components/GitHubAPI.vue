@@ -2,12 +2,12 @@
     <a-entity id="gitHub" layout="type: box; columns: 3; marginRow: -5; marginColumn: -2; plane: xz" position="7 1 -5">
             <a-box  v-for="gitHubAccount in gitHubAccounts"
                     :key="gitHubAccount.id"
-                    material="color: #000000"
+                    material="color: #FF2F9A"
                     class="clickable"
                     v-on:click="getGits"
                     width="1.5"
                     event-set__enter="_event: mouseenter; color: #551a8b; metalness: 0.5"
-                    event-set__leave="_event: mouseleave; color: #000000">
+                    event-set__leave="_event: mouseleave; color: #FF2F9A">
                 <a-text v-bind:value="gitHubAccount.login" 
                     position="-.6 0 .5"               
                     width="1"
@@ -29,7 +29,7 @@ export default {
       let vm = this;
       voiceBus.$on('gitVoice', function(){
           console.log('this is githubapi logging voice received')
-          console.log(vm)
+        //   console.log(vm)
           vm.getGits();
       })
   },
@@ -38,16 +38,7 @@ export default {
   },
   data() {
     return {
-        gitHubAccounts: [
-            {
-                "id": "1",
-                "login": "susan"
-            },
-            {
-                "id": "2",
-                "login": "mccormick"
-            }
-        ]
+        gitHubAccounts: []
     };
   },
   methods: {
