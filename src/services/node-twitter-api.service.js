@@ -2,13 +2,14 @@ const Twit = require('twit');
 const twitterConfig = require('../config/twitter-config');
 const T = new Twit(twitterConfig);
 
-export default function getTwits() {
+export default class TwitterAPI {
+    getTwits() {
     const output = []
 
     const params = {
         f: 'users',
         q: 'portland',
-        count: '2'
+        count: '10'
     }
 
     let pages = 1; //set pages to increase amount of results received by increments of 20
@@ -49,4 +50,6 @@ export default function getTwits() {
 
 
     console.log('third');
+    }
 }
+// getTwits();

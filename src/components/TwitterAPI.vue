@@ -1,40 +1,51 @@
 <template>
-  <a-entity position="0 1 -5">
+  <a-entity layout="type: box; columns: 3; marginRow: -5; marginColumn: -2; plane: xz" position="2.25 1 -5">
     <a-box  v-for="twitterAccount in twitterAccounts"
             :key="twitterAccount.id"
-            material="color: #FF2F9A"
+            material="color: #0084FF"
+            metalness=".5"
             class="clickable"
             v-on:click="getTwits"
             width="1.5"
             event-set__enter="_event: mouseenter; color: #551a8b; metalness: 0.5"
-            event-set__leave="_event: mouseleave; color: #FF2F9A">
+            event-set__leave="_event: mouseleave; color: #0084FF">
         <a-text v-bind:value="twitterAccount.name" 
+            color="#333333"
             position="-.6 0 .5" 
             width="1"
             wrap-count="10"></a-text>
-        <a-entity geometry="primitive:box;" 
-            material="shader:gif;src:url(https://i.gifer.com/3eRt.gif);opacity:1.0"
-            position="0 1.25 0"
-        >
-        </a-entity>
-        <a-entity light="color: purple; intensity: 1.5" position="1 1 -2"></a-entity>
-        <a-entity light="color: purple; intensity: 1.5" position="-1 1 -2"></a-entity>
+        <a-image v-bind:src="twitterAccount.profile_image_url" position="0 1.25 0"></a-image>
     </a-box>
   </a-entity>
 </template>
 
 <script>
-import { voiceBus } from '.././main'
+// This Twitter API uses the Twitter API Service to get tweets from a server and bring it into the Vue app.
+
+import { voiceBus } from ".././main";
+import TwitterAPI from "../services/node-twitter-api.service";
+const openSocket = require("socket.io-client");
+const twitSocket = openSocket("http://localhost:3000");
 
 export default {
   name: "TwitterAPI",
   created() {
     let vm = this;
-      voiceBus.$on('twitterVoice', function(){
-          console.log('this is twitterapi logging voice received')
-          // console.log(vm)
-          vm.getTwits();
-      })
+    voiceBus.$on("twitterVoice", function() {
+      console.log("this is twitterapi logging voice received");
+      // console.log(vm)
+      twitSocket.emit("getTwits", () => {
+        console.log("getTwits message emitted to server");
+      });
+      vm.getTwits();
+    });
+    twitSocket.on("twitterResult", response => {
+      console.log(response[0]);
+      this.twitterAccounts = response[0];
+    });
+  },
+  mounted() {
+    console.log('twitter api mounted');
   },
   data() {
     return {
@@ -43,12 +54,7 @@ export default {
   },
   methods: {
     getTwits() {
-      this.twitterAccounts = [
-        {
-          "id": "1",
-          "name": "under construction"
-        }
-      ]
+      console.log("getTwits was triggered in Twitter API");
     }
   }
 };
