@@ -50,6 +50,7 @@ export default {
             console.log(response.items);
             this.gitHubAccounts = response.items;
         });
+        voiceBus.$emit('githubOpen', 'GitHub Open');
     }
   }
 };

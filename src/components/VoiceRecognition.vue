@@ -20,6 +20,7 @@
 
 <script type = "text/javascript" >
 import { voiceBus } from '.././main'
+import { promptBus } from '.././main'
 
 export default {
   name: "VoiceRecognition",
@@ -75,14 +76,8 @@ export default {
         }
       }
 
-      if (transcript.includes("stop")) {
-        if (e.results[0].isFinal) {
-            // console.log("json recognized")
-            let vm = this;
-            // console.log(vm)
-            vm.stop();
-        }
-      }
+      console.log(transcript);
+
     });
   },
   data() {
@@ -92,16 +87,19 @@ export default {
   },
   methods: {
     recognize() {
-      console.log(this.recognition);
-      this.recognition.addEventListener("end", this.recognition.start);
-      this.recognition.start();
+      if(promptBus.firstVoice === false) {
+        this.transcript = "Voice recognition has started! (Try saying the letters between the brackets over there to your left.)";
+        console.log(this.recognition);
+        this.recognition.addEventListener("end", this.recognition.start);
+        this.recognition.start();
+      } else {
+        this.firstVoice();
+      }
     },
-    stop(){
-      this.recognition.stop();
-      console.log('voice recognition should be stopped');
-      this.recognition.abort();
-      console.log('voice recognition should be aborted');
-      this.transcript = 'Restart Voice Recognition';
+    firstVoice() {
+      promptBus.$emit('firstVoicePrompt', 'first voice prompt emitted');
+      promptBus.firstVoice = false;
+      this.recognize();
     },
     getGits() {
         voiceBus.$emit('gitVoice', this.transcript);

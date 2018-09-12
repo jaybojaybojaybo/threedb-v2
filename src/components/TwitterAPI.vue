@@ -42,6 +42,7 @@ export default {
     twitSocket.on("twitterResult", response => {
       console.log(response[0]);
       this.twitterAccounts = response[0];
+      voiceBus.$emit('twitterOpen', 'Twitter opened');
     });
   },
   mounted() {

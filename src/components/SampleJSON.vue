@@ -56,6 +56,7 @@ export default {
             console.log(response);
             this.sampleAccounts = response
         })
+        voiceBus.$emit('jsonOpen', "JSON samples open");
     }
   }
 };

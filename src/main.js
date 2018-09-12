@@ -12,6 +12,7 @@ import 'aframe-textwrap-component';
 import 'aframe-gamepad-controls';
 
 export const voiceBus = new Vue();
+export const promptBus = new Vue();
 
 Vue.config.productionTip = false
 
