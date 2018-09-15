@@ -25,7 +25,7 @@
 import { voiceBus } from ".././main";
 import TwitterAPI from "../services/node-twitter-api.service";
 const openSocket = require("socket.io-client");
-const twitSocket = openSocket("http://localhost:3000");
+const twitSocket = openSocket("https://polar-forest-38557.herokuapp.com/");
 
 export default {
   name: "TwitterAPI",
