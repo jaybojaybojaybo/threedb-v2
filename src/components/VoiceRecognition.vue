@@ -82,7 +82,7 @@ export default {
   },
   data() {
     return {
-      transcript: 'Start Voice Recognition' 
+      transcript: 'Start Voice Recognition (note: Twitter is broken)' 
     };
   },
   methods: {
